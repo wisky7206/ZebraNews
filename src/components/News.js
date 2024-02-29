@@ -29,19 +29,7 @@ export class News extends Component {
             "publishedAt": "2024-02-27T17:41:53Z",
             "content": "By Nomia Iqbal &amp; Alex LedermanBBC News, Alabama\r\nSome hospitals and clinics pulled fertility services after the court ruling on 16 February (file image)\r\nRepublicans in Alabama will introduce a b… [+5414 chars]"
           },
-          {
-            "source": {
-              "id": null,
-              "name": "[Removed]"
-            },
-            "author": null,
-            "title": "[Removed]",
-            "description": "[Removed]",
-            "url": "https://removed.com",
-            "urlToImage": null,
-            "publishedAt": "1970-01-01T00:00:00Z",
-            "content": "[Removed]"
-          },
+          
           {
             "source": {
               "id": "espn",
@@ -58,15 +46,15 @@ export class News extends Component {
           {
             "source": {
               "id": null,
-              "name": "Salon"
+              "name": "Yahoo Entertainment"
             },
-            "author": "Salon",
-            "title": "The measles outbreak in Florida is a warning for the rest of the nation - Salon",
-            "description": null,
-            "url": "https://www.salon.com/2024/02/27/the-measles-in-florida-is-a-warning-for-the-rest-of-the-nation/",
-            "urlToImage": null,
-            "publishedAt": "2024-02-27T17:00:00Z",
-            "content": null
+            "author": "Alexandra Canal",
+            "title": "Stock market today: US stocks mixed as Wall Street watches and waits - Yahoo Finance",
+            "description": "Stocks have lost momentum as investors regroup after the tumultuous run-up last week and as focus sharpens on the health of the US economy.",
+            "url": "https://finance.yahoo.com/news/stock-market-today-dow-falls-as-wall-street-awaits-inflation-data-bitcoin-surges-174523920.html",
+            "urlToImage": "https://s.yimg.com/ny/api/res/1.2/3zJj35lXF60cM2mUTXxRYw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://s.yimg.com/os/creatr-uploaded-images/2024-02/de183a20-cb61-11ee-b7fa-5d9c0918e056",
+            "publishedAt": "2024-02-27T16:40:37Z",
+            "content": "US stocks were in a holding pattern on Tuesday after a pullback from all-time highs, with retail earnings on tap to occupy investors counting down to a crucial inflation report.\r\nThe Dow Jones Indust… [+12394 chars]"
           },
 
     ]
@@ -74,6 +62,8 @@ export class News extends Component {
         super();
         console.log("hello");
         this.state={
+            articles: this.articles,
+            loading: false
 
         }
     }
@@ -81,16 +71,15 @@ export class News extends Component {
         return (
             <div className="container my-3">
                 <h2 className="text-center">ZebraNews - Top Headlines</h2>
-                <div className="row justify-content-center"> {/* Centering the row */}
-                    <div className="col-md-3">
-                        <Newsitem title="mytitle" description="yhygby" imageurl="https://cdn.cnn.com/cnnnext/dam/assets/240226163121-01-early-voting-michigan-021724-super-tease.jpg" />
-                    </div>
-                    <div className="col-md-3">
-                        <Newsitem title="mytitle" description="yhygby" />
-                    </div>
-                    <div className="col-md-3">
-                        <Newsitem title="mytitle" description="yhygby" />
-                    </div>
+               
+                <div className="row"> 
+                {this.state.articles.map((element)=>{
+                    return <div className="col-md-4" key={element.url}>
+                     <Newsitem  title={element.title.slice(0 ,45)} description={element.description.slice(0 ,88)} imageurl={element.urlToImage} newsid={element.url} />
+                 </div>
+
+                })}
+                   
                 </div>
             </div>
         );
